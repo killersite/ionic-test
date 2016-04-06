@@ -1,0 +1,14 @@
+<ion-view title="Firebase">
+  <ion-content>
+    <div>
+      <div class="list list-name">
+        <label for=""><input ng-model="vm.user.email" placeholder="email" type="text"></label>
+        <label for=""><input ng-model="vm.user.pass" placeholder="password" type="password"></label>
+      </div>
+    </div>
+    <div class="padding-left padding-right">
+      <div class="button-bar"><a ng-click="vm.login(vm.user)" class="button">Login</a></div>
+      <div class="button-bar"><a ng-click="vm.createUser(vm.user)" class="button">Register</a></div>
+    </div>
+  </ion-content>
+</ion-view>
