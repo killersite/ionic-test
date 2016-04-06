@@ -1,8 +1,12 @@
 /**
  * Created by Ben on 4/5/2016.
  */
-angular.module('starter')
-  .controller('FireBaseController', function ($scope, Auth, $state) {
+(function (angular) {
+
+  angular.module('starter.controllers')
+    .controller('FireBaseController', controllerFnc);
+
+  function controllerFnc($scope, Auth, $state, $log) {
 
     // Check for the user's authentication state
     Auth.$onAuth(function (authData) {
@@ -34,6 +38,7 @@ angular.module('starter')
 
     // Login an existing user, called when a user submits the login form
     this.login = function (user) {
+      $log.log('login called');
       Auth.$authWithPassword({
         email: user.email,
         password: user.pass
@@ -42,9 +47,10 @@ angular.module('starter')
         $state.go('secure');
         $scope.loggedInUser = authData;
       }).catch(function (error) {
-        console.log('Error: ', error);
+        $log.log('Error: ', error);
       });
     };
 
+  };
 
-  })
+})(angular);
