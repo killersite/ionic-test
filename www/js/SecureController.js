@@ -2,18 +2,19 @@
 
   angular.module('starter.controllers')
     .controller('SecureController', controllerFnc)
-    .factory('Users', function ($firebaseArray, FBURL, $window) {
-      var ref = new $window.Firebase(FBURL + 'users');
-      return $firebaseArray(ref);
-    })
     .factory('FB', function ($firebaseArray, FBURL, $window) {
       return new $window.Firebase(FBURL);
     })
 
 
-  function controllerFnc($scope, $ionicPlatform, Auth, $state, $ionicHistory, FB, Users, $firebaseObject, $firebaseArray, $cordovaCamera) {
+  function controllerFnc($scope, $ionicPlatform, Auth, $state, $ionicHistory, FB, $firebaseObject, $firebaseArray, $cordovaCamera, $log) {
 
+    $log.log('Clearing history!');
+    //$ionicHistory.nextViewOptions({
+    //  historyRoot: true
+    //});
     $ionicHistory.clearHistory();
+
     $scope.images = [];
     var syncArray;
 
@@ -27,15 +28,6 @@
         $state.go('firebase');
       }
     });
-
-    //var fbAuth = Auth.getAuth();
-    //if (fbAuth) {
-    //  var userRef = Auth.child('users/' + fbAuth.uid);
-    //  var syncArray = $firebaseArray(userRef.child('images'));
-    //  $scope.images = syncArray;
-    //} else {
-    //  $state.go('firebase');
-    //}
 
     $ionicPlatform.ready(function () {
 

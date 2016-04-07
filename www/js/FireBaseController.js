@@ -8,6 +8,8 @@
 
   function controllerFnc($scope, Auth, $state, $log) {
 
+    var vm = this;
+
     // Check for the user's authentication state
     Auth.$onAuth(function (authData) {
       if (authData) {
@@ -24,7 +26,7 @@
         password: user.pass
       }).then(function () {
         // User created successfully, log them in
-        return Auth.$authWithPassword({
+        return vm.login({
           email: user.email,
           password: user.pass
         });

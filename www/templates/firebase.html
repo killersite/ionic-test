@@ -1,14 +1,16 @@
-<ion-view title="Firebase">
-  <ion-content>
-    <div>
-      <div class="list list-name">
-        <label for=""><input ng-model="vm.user.email" placeholder="email" type="text"></label>
-        <label for=""><input ng-model="vm.user.pass" placeholder="password" type="password"></label>
+<ion-view title="It's Broke!">
+  <ion-content style="overflow: hidden;">
+
+    <div style="padding-top: 20px">
+      <div class="list padding-left padding-right">
+        <label class="item item-input"><input ng-model="vm.user.email" placeholder="email" type="text"></label>
+        <label class="item item-input"><input ng-model="vm.user.pass" placeholder="password" type="password"></label>
       </div>
     </div>
-    <div class="padding-left padding-right">
-      <div class="button-bar"><a ng-click="vm.login(vm.user)" class="button">Login</a></div>
-      <div class="button-bar"><a ng-click="vm.createUser(vm.user)" class="button">Register</a></div>
+
+    <div class="button-bar padding-left padding-right">
+      <a class="button button-block button-outline" ng-click="vm.login(vm.user)">Login</a>
+      <a class="button button-block button-outline" ng-click="vm.createUser(vm.user)">Register</a>
     </div>
   </ion-content>
 </ion-view>
