@@ -24,18 +24,15 @@
       Auth.$createUser({
         email: user.email,
         password: user.pass
-      }).then(function () {
-        // User created successfully, log them in
-        return vm.login({
-          email: user.email,
-          password: user.pass
+      })
+        .then(function (authData) {
+          console.log('Logged in successfully as: ', authData.uid);
+          // User created successfully, log them in
+          vm.login(user);
+        })
+        .catch(function (error) {
+          console.log('Error: ', error);
         });
-      }).then(function (authData) {
-        console.log('Logged in successfully as: ', authData.uid);
-        $scope.loggedInUser = authData;
-      }).catch(function (error) {
-        console.log('Error: ', error);
-      });
     };
 
     // Login an existing user, called when a user submits the login form
