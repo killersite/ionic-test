@@ -1,0 +1,43 @@
+<ion-view title="It's Broke!">
+  <ion-content style="overflow: hidden;">
+
+    <form name="vm.form" novalidate style="padding-top: 20px">
+
+      <div class="form-error">
+        {{vm.serverError.message}}
+      </div>
+
+      <div class="list padding-left padding-right">
+        <label class="item item-input" ng-class="{ 'has-error': vm.form.email.$touched && vm.form.email.$invalid }">
+          <input ng-model="vm.user.email" name="email" placeholder="email" type="email" required>
+        </label>
+
+        <div class="form-errors" ng-messages="vm.form.email.$error" ng-if='vm.form.email.$touched'>
+          <div ng-message="required">
+            You forgot to enter your email address...
+          </div>
+          <div ng-message="email">
+            You did not enter your email address correctly...
+          </div>
+        </div>
+
+        <label class="item item-input" ng-class="{ 'has-error': vm.form.password.$touched && vm.form.password.$invalid }">
+          <input ng-model="vm.user.pass" name="password" placeholder="password" type="password" required>
+        </label>
+
+        <div class="form-errors" ng-messages="vm.form.password.$error" ng-if='vm.form.password.$touched'>
+          <div ng-message="required">
+            You forgot to enter a password...
+          </div>
+        </div>
+
+      </div>
+
+     </form>
+
+    <div class="button-bar padding-left padding-right">
+      <a class="button button-block button-outline" ng-click="vm.login(vm.user)" ng-disabled="vm.form.$invalid">Login</a>
+      <a class="button button-block button-outline" ng-click="vm.createUser(vm.user)" ng-disabled="vm.form.$invalid">Register</a>
+    </div>
+  </ion-content>
+</ion-view>

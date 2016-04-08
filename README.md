@@ -16,3 +16,14 @@
 cordova plugin add org.apache.cordova.camera
 cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
 
+TODO
+* form validation
+* ngMessages
+* social sharing
+* $cordoveToast 
+* card layout
+  # title
+  # text
+  # user
+  
+  

@@ -3,14 +3,32 @@
  */
 (function (angular) {
 
-  angular.module('starter.controllers')
-    .controller('FireBaseController', controllerFnc);
+  angular.module('broken.login', ['ionic', 'broken.services', 'ngMessages'])
+    .controller('LoginController', controllerFnc)
+    .config(function ($stateProvider) {
+
+      $stateProvider
+        .state('login', {
+          url: '/login',
+          templateUrl: 'js/pages/login/login-tmpl.html',
+          controller: 'LoginController',
+          controllerAs: 'vm',
+          cache: false
+        })
+
+    });
 
   function controllerFnc($scope, Auth, $state, $log) {
 
     var vm = this;
 
     // Check for the user's authentication state
+    Auth.$onAuth(function (authData) {
+      if (authData) {
+        $state.go('gallery');
+      }
+    });
+
     Auth.$onAuth(function (authData) {
       if (authData) {
         $scope.loggedInUser = authData;
@@ -32,6 +50,7 @@
         })
         .catch(function (error) {
           console.log('Error: ', error);
+          vm.serverError = error;
         });
     };
 
@@ -43,10 +62,11 @@
         password: user.pass
       }).then(function (authData) {
         console.log('Logged in successfully as: ', authData.uid);
-        $state.go('secure');
+        $state.go('gallery');
         $scope.loggedInUser = authData;
       }).catch(function (error) {
         $log.log('Error: ', error);
+        vm.serverError = error;
       });
     };
 
