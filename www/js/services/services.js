@@ -6,6 +6,11 @@ angular.module('broken.services', ['ngCordova', 'firebase'])
     return new $window.Firebase(FBURL);
   })
 
+  .factory('Cards', function ($firebaseArray, FBURL, $window) {
+    var ref = new $window.Firebase(FBURL + '/cards');
+    return $firebaseArray(ref);
+  })
+
   .factory('Auth', function ($firebaseAuth, FBURL, $window) {
     var ref = new $window.Firebase(FBURL);
     return $firebaseAuth(ref);

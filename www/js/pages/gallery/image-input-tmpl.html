@@ -1,0 +1,45 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">What's Broke?</h1>
+  </ion-header-bar>
+  <ion-content>
+
+    <form name="vm.newItemForm" novalidate>
+
+      <div class="form-error">
+        {{vm.serverError.message}}
+      </div>
+
+      <div class="list">
+        <label class="item">
+          <img ng-src="data:image/jpeg;base64,{{vm.newItem.image}}" width="100%"/>
+        </label>
+
+        <label class="item item-input item-floating-label" ng-class="{ 'has-error': vm.newItemForm.title.$touched && vm.newItemForm.title.$invalid }">
+          <span class="input-label">Item Name</span>
+          <input type="text" name="title" ng-model="vm.newItem.title" placeholder="Item Name" required>
+        </label>
+        <div class="form-errors" ng-messages="vm.newItemForm.title.$error" ng-if='vm.newItemForm.title.$touched'>
+          <div ng-message="required">
+            This field is required...
+          </div>
+        </div>
+
+        <label class="item item-input item-floating-label">
+          <span class="input-label"><i class="icon ion-edit placeholder-icon"></i> Comments</span>
+          <textarea placeholder="Comments" ng-model="vm.newItem.description"></textarea>
+        </label>
+
+        <div class="item button-bar">
+          <button ng-click="vm.closeModal(true)" class="button button-stable">
+            cancel
+          </button>
+          <button ng-click="vm.closeModal()" class="button  button-positive" ng-disabled="vm.newItemForm.$invalid">
+            save
+          </button>
+        </div>
+      </div>
+    </form>
+
+  </ion-content>
+</ion-modal-view>

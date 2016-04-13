@@ -17,5 +17,5 @@ angular.module('broken', ['ionic', 'broken.services', 'broken.gallery', 'broken.
   })
 
   .config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/gallery');
   });

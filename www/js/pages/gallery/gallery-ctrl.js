@@ -2,38 +2,64 @@
 
   angular.module('broken.gallery', ['ionic', 'broken.services', 'firebase'])
     .config(configFnc)
-    .controller('GalleryController', controllerFnc);
+    .controller('GalleryController', controllerFnc)
+    .filter('reverse', function() {
+      return function(items) {
+        return items.slice().reverse();
+      };
+    });
 
   function configFnc($stateProvider) {
     $stateProvider
       .state('gallery', {
         url: '/gallery',
-        templateUrl: 'js/pages/gallery/gallery-tmpl.html',
+        templateUrl: 'js/pages/gallery/cards-tmpl.html',
         controller: 'GalleryController',
         controllerAs: 'vm',
         cache: false
       })
   };
 
-  function controllerFnc($ionicPlatform, Auth, $state, $ionicHistory, FB, $firebaseArray, $cordovaCamera, $log) {
+  function controllerFnc($scope, $ionicPlatform, $ionicModal, Cards, Auth, $state, $ionicHistory, FB, $firebaseArray, $cordovaCamera, $log) {
     var vm = this;
 
-    $log.log('Clearing history!');
-    $ionicHistory.clearHistory();
-
+    vm.newItem = {};
     vm.images = [];
-    var syncArray;
 
-    // Check for the user's authentication state
-    Auth.$onAuth(function (authData) {
-      if (authData) {
-        var userRef = FB.child('users/' + authData.uid);
-        syncArray = $firebaseArray(userRef.child('images'));
-        vm.images = syncArray;
-      } else {
-        $state.go('login');
-      }
+    // ADD CARDS TO A SYNCHRONIZED ARRAY
+    vm.cards = Cards;
+
+    vm.openModal = function () {
+      vm.modal.show();
+    };
+
+    vm.closeModal = function (canceled) {
+      if(canceled) vm.modal.hide();
+
+      // save image and description
+      Cards.$add(vm.newItem)
+        .then(function () {
+          vm.newItem = {};
+          vm.modal.hide();
+        }, function (err) {
+          vm.serverError = err;
+        })
+
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function () {
+      vm.modal.remove();
     });
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function () {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('modal.removed', function () {
+      // Execute action
+    });
+
+    // modal end
 
     $ionicPlatform.ready(function () {
 
@@ -44,7 +70,7 @@
         allowEdit: true,
         encodingType: Camera.EncodingType.JPEG,
         targetWidth: 500,
-        targetHeight: 500,
+        targetHeight: 300,
         popoverOptions: CameraPopoverOptions,
         saveToPhotoAlbum: false,
         correctOrientation: true
@@ -54,10 +80,12 @@
         $log.log("taking picture");
         $cordovaCamera.getPicture(options)
           .then(function (imageData) {
-            syncArray.$add({image: imageData})
-              .then(function () {
-                alert('image saved');
-              })
+            // add image to scope
+            vm.newItem.image = imageData;
+
+            // show input modal
+            vm.openModal();
+
           }, function (err) {
             // error
             $log.log("can't take picture");
@@ -65,6 +93,33 @@
       }
 
     });
+
+    // init
+
+    $log.log('Clearing history!');
+    $ionicHistory.clearHistory();
+
+    // Check for the user's authentication state
+    // removed for now
+    //var syncArray;
+    //Auth.$onAuth(function (authData) {
+    //  if (authData) {
+    //    var userRef = FB.child('users/' + authData.uid);
+    //    syncArray = $firebaseArray(userRef.child('images'));
+    //    vm.images = syncArray;
+    //  } else {
+    //    $state.go('login');
+    //  }
+    //});
+
+    // Modal input
+    $ionicModal.fromTemplateUrl('js/pages/gallery/image-input-tmpl.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+      vm.modal = modal;
+    });
+
   }
 
 })(angular)
