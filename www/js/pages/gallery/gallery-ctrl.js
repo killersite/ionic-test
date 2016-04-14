@@ -3,8 +3,8 @@
   angular.module('broken.gallery', ['ionic', 'broken.services', 'firebase'])
     .config(configFnc)
     .controller('GalleryController', controllerFnc)
-    .filter('reverse', function() {
-      return function(items) {
+    .filter('reverse', function () {
+      return function (items) {
         return items.slice().reverse();
       };
     });
@@ -33,14 +33,24 @@
       vm.modal.show();
     };
 
+    vm.resetNewItemForm = function(){
+      vm.newItemForm.$setPristine();
+      vm.newItemForm.$setUntouched();
+      vm.newItem = {};
+    }
+
     vm.closeModal = function (canceled) {
-      if(canceled) vm.modal.hide();
+      if (canceled) {
+        vm.modal.hide();
+        vm.resetNewItemForm();
+      }
 
       // save image and description
       Cards.$add(vm.newItem)
         .then(function () {
           vm.newItem = {};
           vm.modal.hide();
+          vm.resetNewItemForm();
         }, function (err) {
           vm.serverError = err;
         })
@@ -65,15 +75,15 @@
 
       var options = {
         quality: 50,
-        destinationType: Camera.DestinationType.DATA_URL,
-        sourceType: Camera.PictureSourceType.CAMERA,
-        allowEdit: true,
-        encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 500,
-        targetHeight: 300,
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false,
-        correctOrientation: true
+        destinationType: Camera.DestinationType.DATA_URL
+        //sourceType: Camera.PictureSourceType.CAMERA,
+        //allowEdit: true,
+        //encodingType: Camera.EncodingType.JPEG,
+        //targetWidth: 500,
+        //targetHeight: 300,
+        //popoverOptions: CameraPopoverOptions,
+        //saveToPhotoAlbum: false,
+        //correctOrientation: true
       };
 
       vm.takePicture = function () {
