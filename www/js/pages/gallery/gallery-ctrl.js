@@ -7,7 +7,7 @@
       return function (items) {
         return items.slice().reverse();
       };
-    });
+    })
 
   function configFnc($stateProvider) {
     $stateProvider
@@ -20,7 +20,7 @@
       })
   };
 
-  function controllerFnc($scope, $ionicPlatform, $ionicModal, Cards, Auth, $state, $ionicHistory, FB, $firebaseArray, $cordovaCamera, $log) {
+  function controllerFnc($window, $scope, $ionicPlatform, $ionicModal, Cards, Auth, $state, $ionicHistory, FB, $firebaseArray, $cordovaCamera, $log) {
     var vm = this;
 
     vm.newItem = {};
@@ -33,7 +33,7 @@
       vm.modal.show();
     };
 
-    vm.resetNewItemForm = function(){
+    vm.resetNewItemForm = function () {
       vm.newItemForm.$setPristine();
       vm.newItemForm.$setUntouched();
       vm.newItem = {};
@@ -75,7 +75,16 @@
 
       var options = {
         quality: 50,
-        destinationType: Camera.DestinationType.DATA_URL
+        destinationType: 0,
+        sourceType: 1,
+        encodingType: 0,
+        allowEdit: true,
+        targetWidth: 300,
+        targetHeight: 150,
+        saveToPhotoAlbum: false,
+        correctOrientation: true
+
+        //destinationType: Camera.DestinationType.DATA_URL,
         //sourceType: Camera.PictureSourceType.CAMERA,
         //allowEdit: true,
         //encodingType: Camera.EncodingType.JPEG,
@@ -92,10 +101,8 @@
           .then(function (imageData) {
             // add image to scope
             vm.newItem.image = imageData;
-
             // show input modal
             vm.openModal();
-
           }, function (err) {
             // error
             $log.log("can't take picture");
@@ -104,7 +111,7 @@
 
     });
 
-    // init
+    // init code
 
     $log.log('Clearing history!');
     $ionicHistory.clearHistory();
