@@ -20,7 +20,7 @@
       })
   };
 
-  function controllerFnc($window, $scope, $ionicPlatform, $ionicModal, Cards, Auth, $state, $ionicHistory, FB, $firebaseArray, $cordovaCamera, $log) {
+  function controllerFnc($window, $cordovaProgress, $scope, $ionicPlatform, $ionicModal, Cards, Auth, $state, $ionicHistory, FB, $firebaseArray, $cordovaCamera, $log) {
     var vm = this;
 
     vm.newItem = {};
@@ -72,6 +72,9 @@
     // modal end
 
     $ionicPlatform.ready(function () {
+
+      // show loading
+      //$cordovaProgress.showSimple(true);
 
       var options = {
         quality: 50,
