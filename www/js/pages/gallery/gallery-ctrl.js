@@ -77,7 +77,7 @@
       //$cordovaProgress.showSimple(true);
 
       var options = {
-        quality: 50,
+        quality: 100,
         destinationType: 0,
         sourceType: 1,
         encodingType: 0,
