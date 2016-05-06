@@ -1,0 +1,39 @@
+
+  <meta http-equiv="Content-Security-Policy" content="default-src &apos;self&apos; ws://localhost:* http://localhost:* http://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseio.com data: &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;;
+      connect-src &apos;self&apos; ws://localhost:* http://localhost:* http://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseio.com
+      img-src &apos;self&apos; ws://localhost:* http://localhost:* http://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseio.com
+      script-src &apos;self&apos; ws://localhost:* http://localhost:* http://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseio.com
+      ">
+  <!--<meta http-equiv="Content-Security-Policy" content="img-src &apos;self&apos; data:;default-src * &apos;unsafe-eval&apos; &apos;unsafe-inline&apos;">-->
+  <!--<meta http-equiv="Content-Security-Policy" content="default-src *;-->
+               <!--img-src &apos;self&apos; data:-->
+                          <!--http://*.firebaseio.com-->
+                          <!--127.0.0.1:*-->
+                          <!--http://localhost:*-->
+                          <!--;-->
+               <!--script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;-->
+                           <!--127.0.0.1:*-->
+                           <!--http://localhost:*-->
+                           <!--http://*.google.com-->
+                           <!--http://*.gstatic.com-->
+                           <!--http://*.googleapis.com-->
+                           <!--http://*.firebaseio.com-->
+                           <!--http://*.firebase.com-->
+                           <!--https://*.google.com-->
+                           <!--https://*.gstatic.com-->
+                           <!--https://*.googleapis.com-->
+                           <!--https://*.firebaseio.com-->
+                           <!--;-->
+               <!--style-src &apos;self&apos; &apos;unsafe-inline&apos;-->
+                          <!--127.0.0.1-->
+                          <!--http://localhost:*-->
+                           <!--http://*.google.com-->
+                           <!--http://*.gstatic.com-->
+                           <!--http://*.googleapis.com-->
+                           <!--http://*.firebaseio.com-->
+                           <!--http://*.firebase.com-->
+                           <!--https://*.google.com-->
+                           <!--https://*.gstatic.com-->
+                           <!--https://*.googleapis.com-->
+                           <!--https://*.firebaseio.com-->
+  <!--">-->
