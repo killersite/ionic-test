@@ -20,7 +20,7 @@
       })
   };
 
-  function controllerFnc($window, $cordovaProgress, $scope, $ionicPlatform, $ionicModal, Cards, Auth, $state, $ionicHistory, FB, $firebaseArray, $cordovaCamera, $log) {
+  function controllerFnc($timeout, Toast, $scope, $ionicPlatform, $ionicModal, Cards, Auth, $state, $ionicHistory, FB, $firebaseArray, $cordovaCamera, $log) {
     var vm = this;
 
     vm.newItem = {};
@@ -37,8 +37,14 @@
       vm.newItemForm.$setPristine();
       vm.newItemForm.$setUntouched();
       vm.newItem = {};
-    }
+    };
 
+    function timeout(time) {
+      $timeout(function () {
+        ProgressIndicator.hide();
+      }, time);
+    }
+    
     vm.closeModal = function (canceled) {
       if (canceled) {
         vm.modal.hide();
@@ -48,6 +54,8 @@
       // save image and description
       Cards.$add(vm.newItem)
         .then(function () {
+          Toast.show('saved', 'short', 'bottom');
+
           vm.newItem = {};
           vm.modal.hide();
           vm.resetNewItemForm();
