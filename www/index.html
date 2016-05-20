@@ -6,8 +6,7 @@
 
   <!--<meta http-equiv="Content-Security-Policy" content="default-src * data: &apos;unsafe-inline&apos;">-->
   <!--<meta http-equiv="Content-Security-Policy" content="img-src &apos;self&apos; data:;default-src * &apos;unsafe-eval&apos; &apos;unsafe-inline&apos;">-->
-  <meta http-equiv="Content-Security-Policy"
-        content="default-src *; img-src &apos;self&apos; data: http://*.firebaseio.com http://*:35729 127.0.0.1:* http://localhost:*; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos; 127.0.0.1:* http://*:35729 http://localhost:* http://*.google.com http://*.gstatic.com http://*.googleapis.com http://*.firebaseio.com http://*.firebase.com https://*.google.com https://*.gstatic.com https://*.googleapis.com https://*.firebaseio.com ; style-src &apos;self&apos; &apos;unsafe-inline&apos; 127.0.0.1 http://*:35729 http://localhost:* http://*.google.com http://*.gstatic.com http://*.googleapis.com http://*.firebaseio.com http://*.firebase.com https://*.google.com https://*.gstatic.com https://*.googleapis.com https://*.firebaseio.com">
+  <meta http-equiv="Content-Security-Policy" content="default-src *; img-src &apos;self&apos; data: http://*.firebaseio.com http://*:35729 127.0.0.1:* http://localhost:*; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos; 127.0.0.1:* http://*:35729 http://localhost:* http://*.google.com http://*.gstatic.com http://*.googleapis.com http://*.firebaseio.com http://*.firebase.com https://*.google.com https://*.gstatic.com https://*.googleapis.com https://*.firebaseio.com ; style-src &apos;self&apos; &apos;unsafe-inline&apos; 127.0.0.1 http://*:35729 http://localhost:* http://*.google.com http://*.gstatic.com http://*.googleapis.com http://*.firebaseio.com http://*.firebase.com https://*.google.com https://*.gstatic.com https://*.googleapis.com https://*.firebaseio.com">
   <title></title>
 
   <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -42,8 +41,20 @@
 </head>
 <body ng-app="broken">
 
-  <ion-nav-bar class="bar-stable"></ion-nav-bar>
+  <ion-nav-bar class="bar-stable topBarLogo">
+  </ion-nav-bar>
   <ion-nav-view></ion-nav-view>
+  <ion-footer-bar align-title="center" class="bar-assertive">
+    <div class="buttons">
+      <button class="button">It&apos;s Broke</button>
+    </div>
+    <div class="button">
+      <button class="button">help others</button>
+    </div>
+    <div class="buttons">
+      <button class="button">favorites</button>
+    </div>
+  </ion-footer-bar>
 
 </body>
 </html>

@@ -16,19 +16,14 @@
         </label>
 
         <label class="item item-input item-floating-label" ng-class="{ 'has-error': vm.newItemForm.title.$touched && vm.newItemForm.title.$invalid }">
-          <span class="input-label">Item Name</span>
-          <input type="text" name="title" ng-model="vm.newItem.title" placeholder="Item Name" required>
+          <span class="input-label">Title</span>
+          <input type="text" name="title" ng-model="vm.newItem.title" placeholder="Title" required>
         </label>
         <div class="form-errors" ng-messages="vm.newItemForm.title.$error" ng-if='vm.newItemForm.title.$touched'>
           <div ng-message="required">
             This field is required...
           </div>
         </div>
-
-        <label class="item item-input item-floating-label">
-          <span class="input-label"><i class="icon ion-edit placeholder-icon"></i> Comments</span>
-          <textarea placeholder="Comments" ng-model="vm.newItem.description"></textarea>
-        </label>
 
         <div class="item button-bar">
           <button ng-click="vm.closeModal(true)" class="button button-stable">

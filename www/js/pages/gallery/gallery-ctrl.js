@@ -44,26 +44,27 @@
         ProgressIndicator.hide();
       }, time);
     }
-    
+
     vm.closeModal = function (canceled) {
       if (canceled) {
         vm.modal.hide();
         vm.resetNewItemForm();
+        return;
       }
 
       // save image and description
       Cards.$add(vm.newItem)
         .then(function () {
-          Toast.show('saved', 'short', 'bottom');
-
-          vm.newItem = {};
           vm.modal.hide();
           vm.resetNewItemForm();
         }, function (err) {
           vm.serverError = err;
         })
 
+      Toast.show('saved', 'short', 'bottom');
+
     };
+
     //Cleanup the modal when we're done with it!
     $scope.$on('$destroy', function () {
       vm.modal.remove();

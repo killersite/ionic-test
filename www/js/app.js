@@ -1,6 +1,6 @@
 angular.module('broken', ['ionic', 'broken.services', 'broken.gallery', 'broken.login'])
 
-  .run(function ($ionicPlatform, $ionicLoading) {
+  .run(function ($rootScope, $ionicPlatform, $ionicLoading, $cordovaDevice) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -20,6 +20,12 @@ angular.module('broken', ['ionic', 'broken.services', 'broken.gallery', 'broken.
       template: 'Loading...'
     });
 
+    // save the UUID for tracking posters
+    try {
+      $rootScope.uuid = $cordovaDevice.getUUID();
+    } catch (e) {
+      $rootScope.uuid = 1234;
+    }
   })
 
   .config(function ($stateProvider, $urlRouterProvider, $provide) {
@@ -50,7 +56,7 @@ angular.module('broken', ['ionic', 'broken.services', 'broken.gallery', 'broken.
         duration = duration || 'short';
         position = position || 'top';
 
-        if (!!window.cordova) { // Use the Cordova Toast plugin
+        if (!!window.cordova && angular.isObject($cordovaToast)) { // Use the Cordova Toast plugin
           $cordovaToast.show(message, duration, position);
         }
         else {

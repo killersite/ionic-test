@@ -1,10 +1,11 @@
-<ion-view title="It's Broke!">
+<ion-view>
 
   <ion-nav-buttons side="right">
     <button class="button button-icon ion-camera" ng-click="vm.takePicture()"></button>
   </ion-nav-buttons>
 
-  <ion-content>
+  <ion-content class="has-footer">
+
 
     <div class="card" ng-repeat="card in vm.cards | reverse">
       <div class="item item-divider">
@@ -25,4 +26,4 @@
       </div>
 
   </ion-content>
-</ion-view>
+ </ion-view>
