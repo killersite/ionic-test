@@ -20,6 +20,10 @@ To debug an attached Android device via Chrome
 
 * chrome://inspect/#devices
 
+To install an APK use 
+
+* http://www.apkinstall.com/
+
 cordova plugin add org.apache.cordova.camera
 cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
 
