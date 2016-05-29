@@ -24,6 +24,11 @@ To install an APK use
 
 * http://www.apkinstall.com/
 
+To build for prod
+
+* ionic package build android --release --profile itsbrokedev
+
+
 cordova plugin add org.apache.cordova.camera
 cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
 

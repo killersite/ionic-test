@@ -56,13 +56,13 @@ angular.module('broken', ['ionic', 'broken.services', 'broken.gallery', 'broken.
         duration = duration || 'short';
         position = position || 'top';
 
-        if (!!window.cordova && angular.isObject($cordovaToast)) { // Use the Cordova Toast plugin
-          $cordovaToast.show(message, duration, position);
-        }
-        else {
+        // if (!!window.cordova && angular.isObject($cordovaToast)) { // Use the Cordova Toast plugin
+        //   $cordovaToast.show(message, duration, position);
+        // }
+        // else {
           duration = 2000;
           $ionicLoading.show({template: message, duration: duration});
-        }
+        // }
       }
     };
   })

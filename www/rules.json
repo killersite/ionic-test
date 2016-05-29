@@ -1,11 +1,35 @@
 {
+  UUID: {
+    posts: [
+      {
+        id: 5,
+        title: "something broken",
+        comments: [
+          'nice', 'whassup?'
+        ],
+        tags: [
+          2, 5
+        ]
+      }
+    ],
+    tags: [
+      {
+        title: 'toaster',
+        posts: [
+          5, 21
+        ]
+      }
+    ]
+  }
+}
+
+{
   "rules": {
     "users": {
       ".write": true,
       "$uid": {
         ".read": "auth != null && auth.uid == $uid"
       }
-
     },
     "messages": {
       // Allow anyone to read from the messages/ node

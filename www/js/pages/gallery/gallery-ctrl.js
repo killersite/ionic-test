@@ -91,8 +91,8 @@
         sourceType: 1,
         encodingType: 0,
         allowEdit: true,
-        targetWidth: 300,
-        targetHeight: 150,
+        // targetWidth: 300,
+        // targetHeight: 150,
         saveToPhotoAlbum: false,
         correctOrientation: true
 
