@@ -1,4 +1,5 @@
 /*
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -18,10 +19,21 @@
  *
 */
 
-if (!document.querySelector('meta[http-equiv=Content-Security-Policy]')) {
-    var msg = 'No Content-Security-Policy meta tag found. Please add one when using the cordova-plugin-whitelist plugin.';
-    console.error(msg);
-    setInterval(function() {
-        console.warn(msg);
-    }, 10000);
-}
+var tizen = require('cordova/platform');
+var cordova = require('cordova');
+
+module.exports = {
+    getDeviceInfo: function(success, error) {
+        setTimeout(function () {
+            success({
+                cordova: tizen.cordovaVersion,
+                platform: 'tizen',
+                model: null,
+                version: null,
+                uuid: null
+            });
+        }, 0);
+    }
+};
+
+require("cordova/tizen/commandProxy").add("Device", module.exports);

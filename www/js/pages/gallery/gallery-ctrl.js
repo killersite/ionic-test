@@ -44,7 +44,7 @@
         ProgressIndicator.hide();
       }, time);
     }
-
+    
     vm.closeModal = function (canceled) {
       if (canceled) {
         vm.modal.hide();
