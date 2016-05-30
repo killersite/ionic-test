@@ -7,13 +7,13 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-camera": {
+        "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.itsbroke462151"
         },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.ionicframework.itsbroke462151"
         },
-        "cordova-plugin-device": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.itsbroke462151"
         },
         "cordova-plugin-splashscreen": {
@@ -22,19 +22,19 @@
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.ionicframework.itsbroke462151"
         },
-        "cordova-plugin-whitelist": {
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.itsbroke462151"
+        },
+        "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.ionicframework.itsbroke462151"
         },
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.ionicframework.itsbroke462151"
         },
-        "cordova-plugin-x-toast": {
-            "PACKAGE_NAME": "com.ionicframework.itsbroke462151"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.itsbroke462151"
-        },
         "org.pbernasconi.progressindicator": {
+            "PACKAGE_NAME": "com.ionicframework.itsbroke462151"
+        },
+        "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.ionicframework.itsbroke462151"
         }
     },
