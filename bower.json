@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "angularfire": "^1.2.0",
+    "ngstorage": "0.3.0",
     "ionic-material": "^0.4.2",
     "robotodraft": "^1.1.0",
     "Ionicons": "ionicons#^2.0.1",
