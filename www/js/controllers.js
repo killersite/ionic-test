@@ -5,7 +5,7 @@ angular.module('starter.controllers', [])
     // EMAIL & PASSWORD AUTHENTICATION
 
     // Check for the user's authentication state
-    Auth.$onAuth(function (authData) {
+    Auth.firebaseAuth.$onAuth(function (authData) {
       if (authData) {
         $scope.loggedInUser = authData;
       } else {
@@ -15,12 +15,12 @@ angular.module('starter.controllers', [])
 
     // Create a new user, called when a user submits the signup form
     $scope.createUser = function (user) {
-      Auth.$createUser({
+      Auth.firebaseAuth.$createUser({
         email: user.email,
         password: user.pass
       }).then(function () {
         // User created successfully, log them in
-        return Auth.$authWithPassword({
+        return Auth.firebaseAuth.$authWithPassword({
           email: user.email,
           password: user.pass
         });
@@ -34,7 +34,7 @@ angular.module('starter.controllers', [])
 
     // Login an existing user, called when a user submits the login form
     $scope.login = function (user) {
-      Auth.$authWithPassword({
+      Auth.firebaseAuth.$authWithPassword({
         email: user.email,
         password: user.pass
       }).then(function (authData) {
@@ -47,7 +47,7 @@ angular.module('starter.controllers', [])
 
     // Log a user out
     $scope.logout = function () {
-      Auth.$unauth();
+      Auth.firebaseAuth.$unauth();
     };
 
     $ionicPlatform.ready(function () {

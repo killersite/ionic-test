@@ -1,5 +1,6 @@
 (function (angular) {
 
+
   angular.module('broken.gallery', ['ionic', 'broken.services', 'firebase'])
     .config(configFnc)
     .controller('GalleryController', controllerFnc)
@@ -20,14 +21,17 @@
       })
   };
 
-  function controllerFnc($timeout, Toast, $scope, $ionicPlatform, $ionicModal, Cards, Auth, $state, $ionicHistory, FB, $firebaseArray, $cordovaCamera, $log) {
+  function controllerFnc($timeout, Toast, $scope, $ionicPlatform, $ionicModal, firebaseDataService, Auth, $state, $ionicHistory, $cordovaCamera, $log) {
     var vm = this;
-
+Toast.show('loading gallery', 'short', 'bottom');
     vm.newItem = {};
     vm.images = [];
 
     // ADD CARDS TO A SYNCHRONIZED ARRAY
-    vm.cards = Cards;
+    vm.cards = firebaseDataService.cards;
+
+    // Add likes to array
+    vm.likes = firebaseDataService.likes;
 
     vm.openModal = function () {
       vm.modal.show();
@@ -38,6 +42,18 @@
       vm.newItemForm.$setUntouched();
       vm.newItem = {};
     };
+
+    vm.toggleLike = function(card) {
+
+      var uuid = Auth.uuid();
+      $log.log("UserId" + uuid);
+      $log.log(card);
+    };
+
+    vm.isLiked = function(card) {
+      var uuid = Auth.uuid;
+      $log.log("UserId" + uuid);
+    }
 
     function timeout(time) {
       $timeout(function () {
@@ -53,7 +69,7 @@
       }
 
       // save image and description
-      Cards.$add(vm.newItem)
+      firebaseDataService.cards.$add(vm.newItem)
         .then(function () {
           vm.modal.hide();
           vm.resetNewItemForm();

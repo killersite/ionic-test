@@ -1,19 +1,44 @@
-angular.module('broken.services', ['ngCordova', 'firebase'])
+angular.module('broken.services', ['ngCordova', 'firebase', 'ngStorage'])
 
-  .constant('FBURL', 'https://blinding-inferno-2149.firebaseio.com/')
+  .constant('FBURL', 'https://project-6990747301133512137.firebaseio.com')
 
-  .factory('FB', function ($firebaseArray, FBURL, $window) {
-    return new $window.Firebase(FBURL);
+  .factory('firebaseDataService', function ($firebaseArray, FBURL, $window) {
+    var root = new $window.Firebase(FBURL);
+
+    var cards_ref = new $window.Firebase(FBURL + '/cards');
+
+    var service = {
+      root: root,
+      cards: $firebaseArray(cards_ref),
+      likes: root.child('likes'),
+      comments: root.child('comments')
+    };
+
+    return service;
   })
 
-  .factory('Cards', function ($firebaseArray, FBURL, $window) {
-    var ref = new $window.Firebase(FBURL + '/cards');
-    return $firebaseArray(ref);
-  })
+  .factory('Auth', function ($localStorage, $cordovaDevice, $firebaseAuth, $window, FBURL) {
+// in the future this service will go to network to authenticate users.  it will return a promise.
+// for now it returns a user object with uuid and username
+// here should also go the login and logout and create user functions....
 
-  .factory('Auth', function ($firebaseAuth, FBURL, $window) {
+    // firebase auth
     var ref = new $window.Firebase(FBURL);
-    return $firebaseAuth(ref);
+
+    var user = {
+      uuid: function() {
+        var uuid = $localStorage.uuid || null
+        if (uuid == null) {
+          uuid = $cordovaDevice.getUUID();
+          $localStorage.uuid = uuid
+        }
+        return uuid;
+      },
+      username: "Broken User",
+      firebaseAuth: $firebaseAuth(ref)
+    };
+
+    return user;
   })
 
   .factory('SocialSharing', function ($cordovaSocialSharing) {
