@@ -43,16 +43,32 @@ Toast.show('loading gallery', 'short', 'bottom');
       vm.newItem = {};
     };
 
+    vm.numberOfLikes = function(card) {
+
+    }
+
     vm.toggleLike = function(card) {
 
       var uuid = Auth.uuid();
-      $log.log("UserId" + uuid);
-      $log.log(card);
+      var cardId = card.$id;
+      var cardLikeRef = firebaseDataService.likes_for_card(card);
+      cardLikeRef.transaction(function(like) {
+        if (like && like[uuid]) {
+          like[uuid] = null;
+        } else {
+          if (!like) {
+            like = {};
+          }
+          like[uuid] = true;
+        }
+        return like;
+      });
     };
 
     vm.isLiked = function(card) {
-      var uuid = Auth.uuid;
-      $log.log("UserId" + uuid);
+      var uuid = Auth.uuid();
+      var cardId = card.$id;
+      $log.log("UserId: " + uuid);
     }
 
     function timeout(time) {
