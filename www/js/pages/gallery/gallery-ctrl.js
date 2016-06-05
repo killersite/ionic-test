@@ -44,11 +44,17 @@ Toast.show('loading gallery', 'short', 'bottom');
     };
 
     vm.numberOfLikes = function(card) {
+      var uuid = Auth.uuid();
+      var cardId = card.$id;
+      var likes = firebaseDataService.likes_for_card(card);
+      $firebaseObject(likes).$loaded().then(function(){
+        $log.log("likes: " + likes);
 
+      });
+      return 7;
     }
 
     vm.toggleLike = function(card) {
-
       var uuid = Auth.uuid();
       var cardId = card.$id;
       var cardLikeRef = firebaseDataService.likes_for_card(card);
@@ -68,7 +74,9 @@ Toast.show('loading gallery', 'short', 'bottom');
     vm.isLiked = function(card) {
       var uuid = Auth.uuid();
       var cardId = card.$id;
-      $log.log("UserId: " + uuid);
+      var cardLikeRef = firebaseDataService.likes_for_card(card);
+      var likes = cardLikeRef.once('value');
+      return true;
     }
 
     function timeout(time) {

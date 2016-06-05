@@ -19,8 +19,8 @@
 
       <div class="item item-divider">
         <p>
-          <span class="ion-android-favorite-outline"></span>
-          <a href="#" class="subdued" ng-click="vm.toggleLike(card)">Like (1)</a>
+          <span class="{{vm.isLiked(card)?'ion-android-favorite':'ion-android-favorite-outline'}}"></span>
+          <a href="#" class="subdued" ng-click="vm.toggleLike(card)">Like ({{vm.numberOfLikes(card)}})</a>
           <span class="ion-ios-chatbubble-outline"></span>
           <a href="#" class="subdued">Comments (5)</a>
         </p>
