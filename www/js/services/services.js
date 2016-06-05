@@ -1,6 +1,7 @@
 angular.module('broken.services', ['ngCordova', 'firebase', 'ngStorage'])
 
   .constant('FBURL', 'https://project-6990747301133512137.firebaseio.com')
+  // .constant('FBURL', 'https://blinding-inferno-2149.firebaseio.com/')
 
   .factory('firebaseDataService', function ($firebaseArray, FBURL, $window) {
     var root = new $window.Firebase(FBURL);
@@ -29,6 +30,7 @@ angular.module('broken.services', ['ngCordova', 'firebase', 'ngStorage'])
       uuid: function() {
         var uuid = $localStorage.uuid || null
         if (uuid == null) {
+          // why not use this every time? what is the value of using local-storage?
           uuid = $cordovaDevice.getUUID();
           $localStorage.uuid = uuid
         }

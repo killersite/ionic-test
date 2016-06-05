@@ -134,6 +134,7 @@ Toast.show('loading gallery', 'short', 'bottom');
           }, function (err) {
             // error
             $log.log("can't take picture");
+            $log.log(err);
           });
       }
 
