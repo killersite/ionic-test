@@ -32,6 +32,7 @@ angular.module('broken.services', ['ngCordova', 'firebase', 'ngStorage'])
       uuid: function() {
         var uuid = $localStorage.uuid || null
         if (uuid == null) {
+          // why not use this every time? what is the value of using local-storage?
           uuid = $cordovaDevice.getUUID();
           $localStorage.uuid = uuid
         }
