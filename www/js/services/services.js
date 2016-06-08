@@ -1,7 +1,6 @@
 angular.module('broken.services', ['ngCordova', 'firebase', 'ngStorage'])
 
-  .constant('FBURL', 'https://project-6990747301133512137.firebaseio.com')
-  // .constant('FBURL', 'https://blinding-inferno-2149.firebaseio.com/')
+  .constant('FBURL', 'https://its-broke.firebaseio.com/')
 
   .factory('firebaseDataService', function ($firebaseArray, FBURL, $window) {
     var root = new $window.Firebase(FBURL);
@@ -11,7 +10,10 @@ angular.module('broken.services', ['ngCordova', 'firebase', 'ngStorage'])
     var service = {
       root: root,
       cards: $firebaseArray(cards_ref),
-      likes: root.child('likes'),
+      likes_for_card: function(card) {
+        var likes_ref = new $window.Firebase(FBURL + '/likes/' + card.$id);
+        return likes_ref;
+      },
       comments: root.child('comments')
     };
 
